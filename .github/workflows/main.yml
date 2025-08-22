@@ -1,2 +1,0 @@
-- name: Build Jekyll for GitHub Pages
-  uses: actions/jekyll-build-pages@v1.0.13
