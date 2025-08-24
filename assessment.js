@@ -24,10 +24,35 @@ assessmentButton.addEventListener(
     paragraph.innerText = result;
     resultDivision.appendChild(paragraph);
 
-    // TODO ツイートエリアの作成
+    // ツイートエリアの作成
     tweetDivision.innerText = '';
+    const anchor = document.createElement('a');
+    const hrefValue =
+      'https://x.com/intent/tweet?button_hashtag=' +
+      encodeURIComponent('あなたのいいところ') +
+      '&ref_src=twsrc%5Etfw';
+
+    anchor.setAttribute('href', hrefValue);
+    anchor.setAttribute('class', 'twitter-hashtag-button');
+    anchor.setAttribute('data-text', result);
+    anchor.innerText = 'Tweet #あなたのいいところ';
+
+    tweetDivision.appendChild(anchor);
+
+    const script = document.createElement('script');
+    script.setAttribute('src', 'https://platform.twitter.com/widgets.js');
+    tweetDivision.appendChild(script);
   }
 );
+
+userNameInput.addEventListener(
+  'keydown',
+  (event) => {
+    if (event.code === 'Enter') {
+      assessmentButton.dispatchEvent(new Event('click'))
+    }
+  }
+)
 
 const answers = [
   '###userName###のいいところは声です。###userName###の特徴的な声は皆を惹きつけ、心に残ります。',
